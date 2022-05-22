@@ -1,0 +1,122 @@
+from case.login_class.admin import Admin, Book
+from case.login_class.login1 import Login
+from case.login_class.student import Student
+
+admin = Admin()
+log = Login()
+stu = Student()
+book = Book()
+data_consumer = [{"user": "zhangsan", "password": "zs123456"},
+                {"user": "lisi", "password": "ls123456"}]
+
+data_admin = [{"user": "wangwu", "password": "ww123456"},
+              {"user": "zhouliu", "password": "zl123456"}]
+
+
+print("1:学生登录\n2:管理员登录\n3:学生注册\n4:管理员注册")
+choice1 = eval(input("请选择："))
+if choice1 == 1:
+    if log.login(data_consumer):
+        while True:
+            choice = stu.menu_student()
+            if choice == 1:
+                stu.borrow()
+            elif choice == 3:
+                stu.show()
+            elif choice == 2:
+                stu.back()
+            elif choice == 4:
+                break
+elif choice1 == 2:
+    if log.login(data_admin):
+        while True:
+            print('|', "-----------------------------------", '|')
+            print('|', "欢迎使用图书馆借阅管理系统V 2.0".center(22), '|')
+            print('|', "1 用户信息维护页".center(29), '|')
+            print('|', "2 图书信息维护页".center(29, ' '), '|')
+            print('|', "3 退出系统".center(31, ' '), '|')
+            choice0 = eval(input("请选择要进行的操作："))
+            if choice0 == 1:
+                while True:
+                    choice = admin.menu2()
+                    if choice == 1:
+                        data_temp = admin.add_msg()
+                    elif choice == 2:
+                        data_temp = admin.del_msg()
+                    elif choice == 3:
+                        data_temp = admin.change_msg()
+                    elif choice == 4:
+                        admin.show_msg()
+                    elif choice == 5:
+                        break
+                    else:
+                        print("请输入数字1~5")
+            elif choice0 == 2:
+                while True:
+                    choice = book.menu1()
+                    if choice == 1:
+                        data_temp = book.add_book()
+                    elif choice == 2:
+                        data_temp = book.del_book()
+                    elif choice == 3:
+                        book.change_book()
+                    elif choice == 4:
+                        book.show_book()
+                    elif choice == 5:
+                        break
+            elif choice0 == 3:
+                break
+
+elif choice1 == 3:
+    if log.register(data_consumer):
+        if log.login(data_consumer):
+            while True:
+                choice = stu.menu_student()
+                if choice == 1:
+                    stu.borrow()
+                elif choice == 3:
+                    stu.show()
+                elif choice == 2:
+                    stu.back()
+                elif choice == 4:
+                    break
+elif choice1 == 4:
+    if log.register(data_admin):
+        if log.login(data_admin):
+            while True:
+                print('|', "-----------------------------------", '|')
+                print('|', "欢迎使用图书馆借阅管理系统V 2.0".center(22), '|')
+                print('|', "1 用户信息维护页".center(29), '|')
+                print('|', "2 图书信息维护页".center(29, ' '), '|')
+                print('|', "3 退出系统".center(31, ' '), '|')
+                choice0 = eval(input("请选择要进行的操作："))
+                if choice0 == 1:
+                    while True:
+                        choice = admin.menu2()
+                        if choice == 1:
+                            data_temp = admin.add_msg()
+                        elif choice == 2:
+                            data_temp = admin.del_msg()
+                        elif choice == 3:
+                            data_temp = admin.change_msg()
+                        elif choice == 4:
+                            admin.show_msg()
+                        elif choice == 5:
+                            break
+                        else:
+                            print("请输入数字1~5")
+                elif choice0 == 2:
+                    while True:
+                        choice = book.menu1()
+                        if choice == 1:
+                            data_temp = book.add_book()
+                        elif choice == 2:
+                            data_temp = book.del_book()
+                        elif choice == 3:
+                            book.change_book()
+                        elif choice == 4:
+                            book.show_book()
+                        elif choice == 5:
+                            break
+                elif choice0 == 3:
+                    break
